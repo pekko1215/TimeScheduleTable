@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TimeScheduleTable</title>
+        <style>
+            table {
+                border-collapse: collapse;
+            }
+
+            .time-schedule-table-th {
+                width: 50px;
+                border-left: solid darkblue 1px;
+                border-right: solid darkblue 1px;
+            }
+
+            .time-schedule-table-td {
+                border: solid darkblue 1px;
+            }
+
+            .time-schedule-table-tr {
+                border-top: solid darkblue 1px;
+                border-bottom: solid darkblue 1px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <table id="schedule"></table>
+        <script src="dist/TimeScheduleTable.js"></script>
+        <script>
+            const timeTable = new TimeScheduleTable({
+                element: '#schedule',
+                begin: '9:00',
+                end: '15:00'
+            });
+            timeTable.set({
+                begin: '12:00',
+                range: '01:00',
+                day: '水'
+            });
+        </script>
+    </body>
+
+</html>

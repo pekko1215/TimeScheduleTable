@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TimeScheduleTable</title>
+        <style>
+            table {
+                border-collapse: collapse;
+            }
+
+            .time-schedule-table-th {
+                width: 100px;
+                border-left: solid darkblue 1px;
+                border-right: solid darkblue 1px;
+            }
+
+            .time-schedule-table-td {
+                border: solid darkblue 1px;
+            }
+
+            .time-schedule-table-tr {
+                border-top: solid darkblue 1px;
+                border-bottom: solid darkblue 1px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <table id="schedule"></table>
+        <script src="dist/TimeScheduleTable.js"></script>
+        <script>
+            const timeTable = new TimeScheduleTable({
+                element: '#schedule',
+                timeStyle: 'HH:mm',
+                begin: '6:00',
+                end: '14:00',
+                range: '0:30',
+                days: ['月', '火', '水', '木', '金', '土', '日'],
+            });
+            // サンプルデータ
+            [{
+                begin: '8:00',
+                end: '14:00',
+                day: '月'
+            }, {
+                begin: '6:30',
+                end: '14:00',
+                day: '火'
+            }, {
+                begin: '7:00',
+                end: '11:30',
+                day: '水'
+            }, {
+                begin: '7:00',
+                end: '11:30',
+                day: '木'
+            }, {
+                begin: '12:30',
+                end: '14:00',
+                day: '木'
+            }, {
+                begin: '10:00',
+                end: '14:00',
+                day: '土'
+            }, {
+                begin: '10:00',
+                end: '14:00',
+                day: '土'
+            }].forEach(data => {
+                let schedule = timeTable.set(data);
+                schedule.element.addEventListener('click', () => {
+                    alert(`${data.day}曜日 ${data.begin}～${data.end}`);
+                })
+            })
+        </script>
+    </body>
+
+</html>

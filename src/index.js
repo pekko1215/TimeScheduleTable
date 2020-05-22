@@ -144,7 +144,6 @@ export default class {
         if (style) {
             Object.keys(style).forEach(key => {
                 e.style[key] = style[key];
-                console.log(e.style[key])
             })
         }
         if (text) {

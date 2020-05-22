@@ -6,12 +6,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>TimeScheduleTable</title>
         <style>
+            body {
+                font-family: "Helvetica Neue",
+                    Arial,
+                    "Hiragino Kaku Gothic ProN",
+                    "Hiragino Sans",
+                    Meiryo,
+                    sans-serif;
+            }
+
             table {
                 border-collapse: collapse;
+                color: #2aa7e1;
+                font-weight: bold;
             }
 
             .time-schedule-table-th {
-                width: 100px;
+                width: 80px;
                 border-left: solid darkblue 1px;
                 border-right: solid darkblue 1px;
             }
@@ -23,6 +34,30 @@
             .time-schedule-table-tr {
                 border-top: solid darkblue 1px;
                 border-bottom: solid darkblue 1px;
+            }
+
+            .schedule {
+                border-radius: 5px;
+                color: white;
+                text-align: center;
+                line-height: 44px;
+                font-size: 16pt;
+            }
+
+            tr th:nth-child(7) {
+                color: blue;
+            }
+
+            tr th:nth-child(8) {
+                color: red;
+            }
+
+            tr th:nth-child(1) {
+                width: 100px;
+            }
+
+            tr td:nth-child(1) {
+                padding-left: 20px;
             }
         </style>
     </head>
@@ -40,40 +75,43 @@
                 days: ['月', '火', '水', '木', '金', '土', '日'],
             });
             // サンプルデータ
-            [{
-                begin: '8:00',
-                end: '14:00',
-                day: '月'
-            }, {
-                begin: '6:30',
-                end: '14:00',
-                day: '火'
-            }, {
-                begin: '7:00',
-                end: '11:30',
-                day: '水'
-            }, {
-                begin: '7:00',
-                end: '11:30',
-                day: '木'
-            }, {
-                begin: '12:30',
-                end: '14:00',
-                day: '木'
-            }, {
-                begin: '10:00',
-                end: '14:00',
-                day: '土'
-            }, {
-                begin: '10:00',
-                end: '14:00',
-                day: '土'
-            }].forEach(data => {
-                let schedule = timeTable.set(data);
-                schedule.element.addEventListener('click', () => {
-                    alert(`${data.day}曜日 ${data.begin}～${data.end}`);
-                })
+
+            const TypeColor = {
+                Area: 'rgba(255,125,0,0.5)',
+                "身体": 'purple',
+                "生活": 'lgithgreen'
+            }
+
+            class Contents {
+                constructor(begin, end, day, color, text) {
+                    this.begin = begin;
+                    this.end = end;
+                    this.day = day;
+                    this.style = { backgroundColor: color }
+                    this.text = text;
+                }
+            }
+
+            const ContentsData = [
+                new Contents('6:30', '13:00', '火', TypeColor.Area),
+                new Contents('6:30', '13:00', '水', TypeColor.Area),
+                new Contents('6:30', '13:00', '木', TypeColor.Area),
+                new Contents('10:00', '13:00', '金', TypeColor.Area),
+                new Contents('10:00', '13:00', '土', TypeColor.Area),
+
+
+                new Contents('6:30', '7:00', '火', TypeColor.身体, '身体'),
+                new Contents('6:30', '7:00', '木', TypeColor.身体, '身体'),
+                new Contents('6:30', '7:30', '土', TypeColor.身体, '身体'),
+
+                new Contents('7:30', '8:00', '火', TypeColor.生活, '生活'),
+                new Contents('7:30', '8:00', '木', TypeColor.生活, '生活'),
+            ]
+
+            ContentsData.forEach(c => {
+                timeTable.set(c)
             })
+
         </script>
     </body>
 

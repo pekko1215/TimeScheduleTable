@@ -115,7 +115,7 @@ export default class {
         element.appendChild(tHead);
         element.appendChild(tBody);
     }
-    set({ day, begin, end, range }) {
+    set({ day, begin, end, range, style, text }) {
 
         const { element } = this.options;
 
@@ -141,7 +141,15 @@ export default class {
             transform:scaleX(0.9);
             z-index:1;
         `
-
+        if (style) {
+            Object.keys(style).forEach(key => {
+                e.style[key] = style[key];
+                console.log(e.style[key])
+            })
+        }
+        if (text) {
+            e.innerText = text;
+        }
 
         let timeIndex = Math.floor((begin - this.options.begin) / this.options.range);
 
